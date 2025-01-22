@@ -1,0 +1,55 @@
+<Window
+    x:Class="WifeBirthdayApp.MessageBox"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    MinWidth="300"
+    MinHeight="100"
+    d:DesignHeight="225"
+    d:DesignWidth="450"
+    CanResize="False"
+    SizeToContent="WidthAndHeight"
+    Topmost="True"
+    mc:Ignorable="d">
+	<Grid
+        Name="MainGrid"
+        MaxWidth="800"
+        RowDefinitions="*, 50">
+		<TextBlock
+			Margin="10"
+			Name="Text"
+			HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch"
+			TextAlignment="Center"
+			TextWrapping="Wrap">
+			<ToolTip.Tip>
+				<TextBlock Name="toolTip"/>
+			</ToolTip.Tip>
+		</TextBlock>
+		<Border
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            BorderThickness="0,1,0,0"
+            DockPanel.Dock="Bottom">
+			<StackPanel
+                Name="Buttons"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+				<StackPanel.Styles>
+					<Style Selector="Button">
+						<Setter Property="Margin" Value="5" />
+						<Setter Property="Width" Value="80" />
+						<Setter Property="Height" Value="27" />
+						<Setter Property="VerticalAlignment" Value="Bottom" />
+						<Setter Property="Foreground" Value="#000000" />
+						<Setter Property="FontSize" Value="12" />
+						<Setter Property="Background" Value="White" />
+					</Style>
+				</StackPanel.Styles>
+			</StackPanel>
+		</Border>
+	</Grid>
+</Window>

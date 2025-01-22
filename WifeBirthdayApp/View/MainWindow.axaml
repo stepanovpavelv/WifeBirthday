@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:WifeBirthdayApp.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:views="clr-namespace:WifeBirthdayApp.View;assembly=WifeBirthdayApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Name="MainWindowBirthday"
+        x:CompileBindings="True"
+		x:DataType="vm:MainWindowViewModel"
+        x:Class="WifeBirthdayApp.View.MainWindow"
+        Title="Играть! Играть! ИГРАААААТЬ!">
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Margin" Value="10,4,0,0" />
+		</Style>
+	</Window.Styles>
+
+	<StackPanel>
+		<Label>
+			Привет, жена! Это у тебя день рождения? Тогда я хочу сыграть с тобой в одну игру!
+			Жми играть!
+		</Label>
+		<Button Name="PlayOne" Command="{Binding PlayCommand}" CommandParameter="1" IsVisible="{Binding !IsGameMode}">Играть 1</Button>
+		<Button Name="PlayTwo" Command="{Binding PlayCommand}" CommandParameter="2" IsVisible="{Binding !IsGameMode}" >Играть 2</Button>
+		<Button Name="PlayThree" Command="{Binding PlayCommand}" CommandParameter="3" IsVisible="{Binding !IsGameMode}">Играть 3</Button>
+		<Button Name="PlayAgain" Command="{Binding PlayAgainCommand}" IsVisible="{Binding IsGameMode}">Играть ещё :)</Button>
+		<views:VirtualKeyboard DataContext="{Binding GameViewModel}" IsVisible="{Binding #MainWindowBirthday.((vm:MainWindowViewModel)DataContext).IsGameMode }" />
+	</StackPanel>
+
+</Window>

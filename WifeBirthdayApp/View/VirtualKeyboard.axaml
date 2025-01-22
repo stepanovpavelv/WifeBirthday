@@ -1,0 +1,81 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:reactiveUi="http://reactiveui.net"
+			 xmlns:vm="using:WifeBirthdayApp.ViewModel"
+			 xmlns:layout="using:WifeBirthdayApp.View"
+             mc:Ignorable="d"
+             x:Class="WifeBirthdayApp.View.VirtualKeyboard"
+			 x:DataType="vm:VirtualKeyboardViewModel">
+	<UserControl.Styles>
+		<Style Selector="Label">
+			<Setter Property="Width" Value="45" />
+			<Setter Property="Height" Value="45" />
+			<Setter Property="CornerRadius" Value="3" />
+			<Setter Property="Padding" Value="3" />
+			<Setter Property="Margin" Value="4" />
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="18" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style Selector="Label.usual">
+			<Setter Property="Background" Value="Gray" />
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+		<Style Selector="Label.somewhere">
+			<Setter Property="Background" Value="White" />
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+		<Style Selector="Label.equal">
+			<Setter Property="Background" Value="Yellow" />
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+	</UserControl.Styles>
+	<StackPanel Orientation="Vertical" Margin="10">
+		<StackPanel Orientation="Horizontal">
+			<TextBox Name="MainCurrentInput" Width="450" Watermark="Введи слово из 5 букв. Проверим, отгадаешь ли ты подарок!" Text="{Binding CurrentAnswer}" />
+			<Button Margin="10,0,0,0" Name="EnterButton" Command="{Binding CheckAnswerCommand}">Проверить</Button>
+		</StackPanel>
+		<TextBlock Margin="5" HorizontalAlignment="Left" Text="{Binding GiftText}" />
+		<ItemsControl ItemsSource="{Binding Answers}" Background="Black" HorizontalAlignment="Left" Width="450">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate DataType="vm:VirtualKeyboardLayoutRuViewModel">
+					<Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto">
+						<Label Name="First" 
+							   Content="{Binding First.Symbol}" 
+							   Grid.Column="0" 
+							   Classes.usual="{Binding First.IsUsualStyle}"
+							   Classes.somewhere="{Binding First.IsSomewhereStyle}"
+							   Classes.equal="{Binding First.IsEqualStyle}" />
+						<Label Name="Second" 
+							   Content="{Binding Second.Symbol}" 
+							   Grid.Column="1" 
+							   Classes.usual="{Binding Second.IsUsualStyle}"
+							   Classes.somewhere="{Binding Second.IsSomewhereStyle}"
+							   Classes.equal="{Binding Second.IsEqualStyle}" />
+						<Label Name="Third"
+							   Content="{Binding Third.Symbol}"
+							   Grid.Column="2"
+							   Classes.usual="{Binding Third.IsUsualStyle}"
+							   Classes.somewhere="{Binding Third.IsSomewhereStyle}"
+							   Classes.equal="{Binding Third.IsEqualStyle}" />
+						<Label Name="Fourth"
+							   Content="{Binding Fourth.Symbol}"
+							   Grid.Column="3"
+							   Classes.usual="{Binding Fourth.IsUsualStyle}"
+							   Classes.somewhere="{Binding Fourth.IsSomewhereStyle}"
+							   Classes.equal="{Binding Fourth.IsEqualStyle}" />
+						<Label Name="Fifth"
+							   Content="{Binding Fifth.Symbol}"
+							   Grid.Column="4"
+							   Classes.usual="{Binding Fifth.IsUsualStyle}"
+							   Classes.somewhere="{Binding Fifth.IsSomewhereStyle}"
+							   Classes.equal="{Binding Fifth.IsEqualStyle}" />
+					</Grid>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</StackPanel>
+</UserControl>
